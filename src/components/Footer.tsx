@@ -1,6 +1,6 @@
 import React from 'react';
 import { NAV_ITEMS } from '../data/content';
-import { MessageCircle, Phone, ArrowUp } from 'lucide-react';
+import { MessageCircle, Phone, ArrowUp, Linkedin } from 'lucide-react';
 import { getWhatsAppUrl, WHATSAPP_PHONE_FORMATTED } from '../utils/whatsapp';
 import { Logo } from './Logo';
 
@@ -44,17 +44,31 @@ export const Footer: React.FC = () => {
               Independent travel assistance, local recommendations, and Arabic-Spanish communication support designed specifically for Arabic-speaking travelers exploring Mexico.
             </p>
 
-            {/* Direct WhatsApp Badge */}
-            <div className="flex items-center gap-3 text-sm text-stone-300">
-              <span className="text-stone-400">WhatsApp:</span>
+            {/* Direct WhatsApp Badge & LinkedIn */}
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm text-stone-300">
+              <div className="flex items-center gap-2">
+                <span className="text-stone-400">WhatsApp:</span>
+                <a
+                  href={getWhatsAppUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-mono font-medium transition-colors"
+                  aria-label="WhatsApp Contact"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>{WHATSAPP_PHONE_FORMATTED}</span>
+                </a>
+              </div>
               <a
-                href={getWhatsAppUrl()}
+                href="https://www.linkedin.com/company/tu-profe-mx/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-mono font-medium transition-colors"
+                id="footer-linkedin-button"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-900 hover:bg-stone-800 text-sky-400 hover:text-sky-300 border border-stone-800 hover:border-sky-500/40 text-xs font-medium transition-all"
+                aria-label="Tu Profe MX on LinkedIn"
               >
-                <MessageCircle className="w-4 h-4" />
-                <span>{WHATSAPP_PHONE_FORMATTED}</span>
+                <Linkedin className="w-3.5 h-3.5 fill-current" />
+                <span>LinkedIn</span>
               </a>
             </div>
           </div>
@@ -85,6 +99,18 @@ export const Footer: React.FC = () => {
                 >
                   <MessageCircle className="w-3.5 h-3.5" />
                   <span>WhatsApp</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/tu-profe-mx/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  id="footer-linkedin-nav"
+                  className="text-sky-400 hover:text-sky-300 font-medium transition-colors py-1 inline-flex items-center gap-1.5"
+                >
+                  <Linkedin className="w-3.5 h-3.5 fill-current" />
+                  <span>LinkedIn</span>
                 </a>
               </li>
             </ul>
@@ -119,7 +145,19 @@ export const Footer: React.FC = () => {
             Arab Mexico Guide &copy; 2026 &bull; Crafted with care for Arabic-speaking travelers.
           </p>
 
-          <div className="flex items-center gap-1.5 text-stone-400">
+          <div className="flex items-center gap-3 text-stone-400">
+            <a
+              href="https://www.linkedin.com/company/tu-profe-mx/"
+              target="_blank"
+              rel="noopener noreferrer"
+              id="footer-linkedin-bottom"
+              className="inline-flex items-center gap-1.5 text-stone-400 hover:text-[#38bdf8] transition-colors"
+              title="Tu Profe MX on LinkedIn"
+            >
+              <Linkedin className="w-4 h-4 fill-current" />
+              <span>LinkedIn</span>
+            </a>
+            <span>&bull;</span>
             <span>Connecting cultures between the Arab World and Mexico</span>
           </div>
         </div>
