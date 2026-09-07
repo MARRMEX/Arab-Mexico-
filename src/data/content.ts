@@ -23,7 +23,7 @@ export const DESTINATIONS: Destination[] = [
     title: 'Oaxaca',
     subtitle: 'Monte Albán & Heritage',
     tag: 'Zapotec Pyramids & Culture',
-    imageUrl: '/monte-alban-oaxaca.jpg',
+    imageUrl: './monte-alban-oaxaca.jpg',
     altText: 'Ancient Zapotec pyramids and grand plaza of Monte Albán in Oaxaca, Mexico',
   },
   {
@@ -47,7 +47,7 @@ export const DESTINATIONS: Destination[] = [
     title: 'Mexican Culture',
     subtitle: 'Music & traditions',
     tag: 'Folklore & Festivals',
-    imageUrl: '/mexican-culture.jpg',
+    imageUrl: './mexican-culture.jpg',
     altText: 'Traditional Mexican folkloric dance and colorful cultural festival performance',
   },
 ];

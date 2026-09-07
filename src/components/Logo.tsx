@@ -26,7 +26,7 @@ export const Logo: React.FC<LogoProps> = ({
         className={`${sizeMap[size]} rounded-full overflow-hidden shadow-md ring-2 ring-amber-400/60 bg-emerald-950 flex items-center justify-center shrink-0 transition-transform duration-200 hover:scale-105`}
       >
         <img
-          src="/logo.jpg"
+          src="./logo.jpg"
           alt="Arab Mexico Guide Logo"
           className="w-full h-full object-cover object-center"
           loading="eager"

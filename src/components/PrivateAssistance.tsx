@@ -90,7 +90,7 @@ export const PrivateAssistance: React.FC = () => {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-400/30 group">
               <div className="aspect-[4/5] sm:aspect-[4/4] lg:aspect-[4/5] overflow-hidden">
                 <img
-                  src="/monte-alban-oaxaca.jpg"
+                  src="./monte-alban-oaxaca.jpg"
                   alt="Ancient Zapotec stepped pyramids and archaeological site of Monte Albán in Oaxaca, Mexico"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
