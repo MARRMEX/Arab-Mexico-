@@ -1,6 +1,6 @@
 import React from 'react';
 import { NAV_ITEMS } from '../data/content';
-import { MessageCircle, Phone, ArrowUp, Download } from 'lucide-react';
+import { MessageCircle, Phone, ArrowUp } from 'lucide-react';
 import { getWhatsAppUrl, WHATSAPP_PHONE_FORMATTED } from '../utils/whatsapp';
 import { Logo } from './Logo';
 
@@ -90,22 +90,12 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Quick Back to Top & Export */}
-          <div className="lg:col-span-2 flex flex-col justify-between items-start md:items-end gap-4">
+          {/* Quick Back to Top */}
+          <div className="lg:col-span-2 flex flex-col justify-between items-start md:items-end">
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-widest text-amber-400 mb-3">
-                GitHub Pages
+              <h4 className="text-xs font-bold uppercase tracking-widest text-amber-400 mb-5">
+                Back to Top
               </h4>
-              <a
-                href="/github-pages-ready.zip"
-                download="github-pages-ready.zip"
-                id="footer-download-gh-pages"
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-900/40 hover:bg-emerald-800/60 text-emerald-300 border border-emerald-500/40 text-xs font-semibold transition-all mb-2 shadow-sm"
-                title="Download static build ready to upload to GitHub Pages"
-              >
-                <Download className="w-3.5 h-3.5 text-amber-400" />
-                <span>GitHub Pages ZIP</span>
-              </a>
             </div>
 
             <div>
@@ -113,7 +103,7 @@ export const Footer: React.FC = () => {
                 type="button"
                 onClick={scrollToTop}
                 id="footer-back-to-top"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-300 hover:text-white border border-stone-800 text-xs font-medium transition-all"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-300 hover:text-white border border-stone-800 text-xs font-medium transition-all"
                 aria-label="Back to top"
               >
                 <span>Top</span>
