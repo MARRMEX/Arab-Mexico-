@@ -1,0 +1,6 @@
+{
+  "name": "Arab Mexico Guide",
+  "description": "Independent travel assistance and local guidance for Arabic-speaking visitors in Mexico. Personalized recommendations, Arabic-Spanish assistance, transportation guidance and WhatsApp support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
