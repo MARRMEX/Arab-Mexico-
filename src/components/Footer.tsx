@@ -145,19 +145,7 @@ export const Footer: React.FC = () => {
             Arab Mexico Guide &copy; 2026 &bull; Crafted with care for Arabic-speaking travelers.
           </p>
 
-          <div className="flex items-center gap-3 text-stone-400">
-            <a
-              href="https://www.linkedin.com/company/tu-profe-mx/"
-              target="_blank"
-              rel="noopener noreferrer"
-              id="footer-linkedin-bottom"
-              className="inline-flex items-center gap-1.5 text-stone-400 hover:text-[#38bdf8] transition-colors"
-              title="Tu Profe MX on LinkedIn"
-            >
-              <Linkedin className="w-4 h-4 fill-current" />
-              <span>LinkedIn</span>
-            </a>
-            <span>&bull;</span>
+          <div className="flex items-center gap-1.5 text-stone-400">
             <span>Connecting cultures between the Arab World and Mexico</span>
           </div>
         </div>
