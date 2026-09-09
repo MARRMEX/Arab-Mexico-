@@ -18,12 +18,12 @@ export const Navbar: React.FC = () => {
       }
 
       // Detect active section
-      const sections = ['home', 'about-service', 'how-we-help', 'private-assistance', 'how-it-works', 'about', 'contact'];
+      const sections = ['home', 'about-service', 'mini-travel-guide', 'how-we-help', 'private-assistance', 'how-it-works', 'about', 'contact'];
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 140 && rect.bottom >= 140) {
+          if (rect.top <= 160 && rect.bottom >= 140) {
             setActiveSection(sectionId);
             break;
           }
@@ -41,7 +41,13 @@ export const Navbar: React.FC = () => {
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const headerOffset = 70;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
     }
     setMobileMenuOpen(false);
   };
@@ -52,7 +58,7 @@ export const Navbar: React.FC = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-emerald-950/95 backdrop-blur-md shadow-lg border-b border-amber-400/30 py-3'
-          : 'bg-emerald-950/90 backdrop-blur-md border-b border-amber-400/20 py-4'
+          : 'bg-emerald-950/90 backdrop-blur-md border-b border-amber-400/20 py-3.5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,23 +67,23 @@ export const Navbar: React.FC = () => {
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, '#home')}
-            className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded-xl p-1"
+            className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded-xl p-1 shrink-0"
             id="brand-logo-link"
           >
             <Logo size="md" variant="dark" />
             <div className="flex flex-col text-left">
-              <span className="text-lg sm:text-xl font-bold tracking-tight leading-tight">
+              <span className="text-base sm:text-lg xl:text-xl font-bold tracking-tight leading-tight">
                 <span className="text-amber-300 group-hover:text-amber-200 transition-colors">Arab Mexico </span>
                 <span className="text-emerald-400 group-hover:text-emerald-300 transition-colors">Guide</span>
               </span>
-              <span className="text-[11px] text-emerald-300 font-semibold tracking-wide hidden sm:block">
+              <span className="text-[10px] sm:text-[11px] text-emerald-300 font-semibold tracking-wide hidden sm:block">
                 Your Arabic Travel Companion in Mexico
               </span>
             </div>
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5" aria-label="Main Navigation">
             {NAV_ITEMS.map((item) => {
               const targetId = item.href.replace('#', '');
               const isActive = activeSection === targetId;
@@ -88,7 +94,7 @@ export const Navbar: React.FC = () => {
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
                   id={`nav-link-${targetId}`}
-                  className={`px-3.5 py-2 text-sm font-medium rounded-full transition-all duration-200 ${
+                  className={`px-2.5 xl:px-3 py-1.5 xl:py-2 text-xs xl:text-sm font-medium rounded-full transition-all duration-200 whitespace-nowrap ${
                     isActive
                       ? 'text-white bg-emerald-800/90 font-semibold shadow-xs ring-1 ring-amber-400/40'
                       : 'text-stone-200 hover:text-amber-300 hover:bg-emerald-900/60'
@@ -101,16 +107,17 @@ export const Navbar: React.FC = () => {
           </nav>
 
           {/* CTA Button & WhatsApp Direct Contact */}
-          <div className="hidden sm:flex items-center gap-3">
+          <div className="hidden sm:flex items-center gap-3 shrink-0">
             <a
               href={getWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
               id="header-whatsapp-cta"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-semibold text-sm shadow-md ring-1 ring-amber-400/40 hover:ring-amber-400 transition-all duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2"
+              className="inline-flex items-center gap-2 px-3.5 xl:px-5 py-2 xl:py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-semibold text-xs xl:text-sm shadow-md ring-1 ring-amber-400/40 hover:ring-amber-400 transition-all duration-200 group focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 whitespace-nowrap"
             >
               <MessageCircle className="w-4 h-4 transition-transform group-hover:scale-110" />
-              <span>Contact on WhatsApp</span>
+              <span className="hidden xl:inline">Contact on WhatsApp</span>
+              <span className="xl:hidden">WhatsApp</span>
               <ArrowUpRight className="w-3.5 h-3.5 text-amber-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
           </div>

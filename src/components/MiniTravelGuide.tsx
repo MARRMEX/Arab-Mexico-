@@ -16,7 +16,7 @@ export const MiniTravelGuide: React.FC = () => {
   return (
     <section
       id="mini-travel-guide"
-      className="py-20 sm:py-28 bg-gradient-to-b from-stone-900 via-emerald-950 to-stone-950 text-white relative overflow-hidden border-t border-emerald-900/50"
+      className="scroll-mt-16 sm:scroll-mt-20 py-20 sm:py-28 bg-gradient-to-b from-stone-900 via-emerald-950 to-stone-950 text-white relative overflow-hidden border-t border-emerald-900/50"
     >
       {/* Decorative ambient background glows */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />

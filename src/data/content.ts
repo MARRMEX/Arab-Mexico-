@@ -3,6 +3,7 @@ import { NavItem, Destination, ServiceItem, WhyChooseItem, ArabicServiceItem } f
 export const NAV_ITEMS: NavItem[] = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about-service' },
+  { name: 'Mexico Mini Travel Guide', href: '#mini-travel-guide' },
   { name: 'How We Can Help', href: '#how-we-help' },
   { name: 'Private Assistance', href: '#private-assistance' },
   { name: 'How It Works', href: '#how-it-works' },
