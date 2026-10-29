@@ -66,12 +66,12 @@ export const Footer: React.FC = () => {
                 </a>
               </div>
               <a
-                href="https://www.linkedin.com/company/tu-profe-mx/"
+                href="https://www.linkedin.com/company/arab-mexico-guide/"
                 target="_blank"
                 rel="noopener noreferrer"
                 id="footer-linkedin-button"
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-900 hover:bg-stone-800 text-sky-400 hover:text-sky-300 border border-stone-800 hover:border-sky-500/40 text-xs font-medium transition-all"
-                aria-label="Tu Profe MX on LinkedIn"
+                aria-label="Arab Mexico Guide on LinkedIn"
               >
                 <Linkedin className="w-3.5 h-3.5 fill-current" />
                 <span>LinkedIn</span>
@@ -109,7 +109,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="https://www.linkedin.com/company/tu-profe-mx/"
+                  href="https://www.linkedin.com/company/arab-mexico-guide/"
                   target="_blank"
                   rel="noopener noreferrer"
                   id="footer-linkedin-nav"
