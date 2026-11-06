@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { MessageCircle, X } from 'lucide-react';
-import { getWhatsAppUrl, WHATSAPP_PHONE_FORMATTED } from '../utils/whatsapp';
+import { getWhatsAppUrl } from '../utils/whatsapp';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export const FloatingWhatsApp: React.FC = () => {
   const [showTooltip, setShowTooltip] = useState(false);
+  const { language } = useLanguage();
+  const t = translations[language];
 
   useEffect(() => {
     // Show quick greeting tooltip after 3 seconds
@@ -15,7 +19,7 @@ export const FloatingWhatsApp: React.FC = () => {
   }, []);
 
   return (
-    <aside aria-label="WhatsApp Quick Contact" className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2">
+    <aside aria-label={t.floatingWhatsApp.ariaLabel} className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2">
       {/* Tooltip speech bubble */}
       {showTooltip && (
         <div
@@ -23,15 +27,15 @@ export const FloatingWhatsApp: React.FC = () => {
           className="relative bg-emerald-950 text-white px-4 py-3 rounded-2xl shadow-2xl border border-amber-400/40 text-xs sm:text-sm max-w-[240px] animate-fade-in flex items-start gap-2"
         >
           <div>
-            <span className="font-bold text-amber-300 block text-xs">Need travel advice?</span>
+            <span className="font-bold text-amber-300 block text-xs">{t.floatingWhatsApp.title}</span>
             <span className="text-emerald-200 text-[11px] leading-tight block font-medium">
-              Chat directly on WhatsApp in Arabic or English
+              {t.floatingWhatsApp.subtitle}
             </span>
           </div>
           <button
             type="button"
             onClick={() => setShowTooltip(false)}
-            className="text-stone-300 hover:text-white p-0.5"
+            className="text-stone-300 hover:text-white p-0.5 cursor-pointer"
             aria-label="Close tooltip"
           >
             <X className="w-3.5 h-3.5" />
@@ -45,7 +49,7 @@ export const FloatingWhatsApp: React.FC = () => {
         target="_blank"
         rel="noopener noreferrer"
         id="floating-whatsapp-btn"
-        aria-label="Chat with Arab Mexico Guide on WhatsApp"
+        aria-label={t.floatingWhatsApp.ariaLabel}
         className="relative group flex items-center justify-center w-14 h-14 rounded-full bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white shadow-xl shadow-emerald-950/40 ring-2 ring-amber-400/60 hover:scale-105 active:scale-95 transition-all duration-200 focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-400"
       >
         {/* Subtle pulsing ping effect */}
@@ -59,3 +63,4 @@ export const FloatingWhatsApp: React.FC = () => {
     </aside>
   );
 };
+

@@ -1,5 +1,4 @@
 import React from 'react';
-import { WHY_CHOOSE_ITEMS } from '../data/content';
 import {
   Languages,
   MapPin,
@@ -11,6 +10,8 @@ import {
   MessageCircle,
   Award
 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 const iconMap: Record<string, React.ElementType> = {
   Languages,
@@ -24,6 +25,11 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export const WhyChooseUs: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+
+  const whyIcons = ['Languages', 'Scale', 'Compass', 'UserCheck', 'MessageCircle', 'MapPin'];
+
   return (
     <section id="why-choose" className="py-20 sm:py-28 bg-stone-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,26 +37,26 @@ export const WhyChooseUs: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-900 border border-amber-400/40 text-xs font-semibold uppercase tracking-wider mb-4">
             <Award className="w-3.5 h-3.5 text-amber-600" />
-            <span className="text-emerald-900 font-bold">Authentic &amp; Independent</span>
+            <span className="text-emerald-900 font-bold">{t.whyChoose.badge}</span>
           </div>
 
           <h2
             id="why-choose-heading"
             className="text-3xl sm:text-4xl md:text-5xl font-serif-title font-bold tracking-tight mb-5"
           >
-            <span className="text-emerald-950">Why Choose </span>
-            <span className="text-amber-600">Arab Mexico Guide?</span>
+            <span className="text-emerald-950">{t.whyChoose.titleStart}</span>
+            <span className="text-amber-600">{t.whyChoose.titleEnd}</span>
           </h2>
 
           <p className="text-base sm:text-lg text-stone-600 leading-relaxed max-w-2xl mx-auto font-normal">
-            We are focused on helping Arabic-speaking visitors feel more comfortable, informed and confident while exploring Mexico.
+            {t.whyChoose.desc}
           </p>
         </div>
 
         {/* 6 Grid Items */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {WHY_CHOOSE_ITEMS.map((item) => {
-            const IconComponent = iconMap[item.iconName] || Compass;
+          {t.whyChoose.items.map((item, idx) => {
+            const IconComponent = iconMap[whyIcons[idx]] || Compass;
 
             return (
               <div

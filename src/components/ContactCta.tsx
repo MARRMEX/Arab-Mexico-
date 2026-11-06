@@ -12,25 +12,21 @@ import {
 import {
   getWhatsAppUrl,
   WHATSAPP_PHONE_FORMATTED,
-  FOUNDER_NAME,
-  WHATSAPP_MESSAGES
+  FOUNDER_NAME
 } from '../utils/whatsapp';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export const ContactCta: React.FC = () => {
   const [copied, setCopied] = useState(false);
+  const { language, isRtl } = useLanguage();
+  const t = translations[language];
 
   const copyPhoneNumber = () => {
     navigator.clipboard.writeText(WHATSAPP_PHONE_FORMATTED);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
-
-  const starterPrompts = [
-    'General travel assistance',
-    'Private assistance in Oaxaca / Puebla',
-    'Halal dining recommendations',
-    'Transportation & airport advice',
-  ];
 
   return (
     <section id="contact" className="py-20 sm:py-28 bg-stone-50 border-t border-stone-200/70">
@@ -44,7 +40,7 @@ export const ContactCta: React.FC = () => {
             {/* Top Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/90 border border-amber-400/40 text-amber-300 text-xs font-semibold uppercase tracking-wider mb-6">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>Independent Travel Support</span>
+              <span>{t.contact.badge}</span>
             </div>
 
             {/* Title */}
@@ -52,18 +48,18 @@ export const ContactCta: React.FC = () => {
               id="contact-cta-title"
               className="text-3xl sm:text-4xl md:text-5xl font-serif-title font-bold tracking-tight mb-4"
             >
-              <span className="text-white">Need Help Planning Your </span>
-              <span className="text-amber-300">Mexico Experience?</span>
+              <span className="text-white">{t.contact.titleStart}</span>
+              <span className="text-amber-300">{t.contact.titleEnd}</span>
             </h2>
 
             {/* Text */}
             <p className="text-base sm:text-lg text-emerald-200 leading-relaxed mb-8 max-w-lg font-medium">
-              Tell us what you need and we'll explain how our independent travel assistance can help.
+              {t.contact.desc}
             </p>
 
             {/* Starter chips */}
             <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
-              {starterPrompts.map((prompt, i) => (
+              {t.contact.prompts.map((prompt, i) => (
                 <a
                   key={i}
                   href={getWhatsAppUrl(`Hello, I would like to ask about: ${prompt}`)}
@@ -71,7 +67,7 @@ export const ContactCta: React.FC = () => {
                   rel="noopener noreferrer"
                   className="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white/10 hover:bg-white/20 border border-white/15 text-stone-200 hover:text-white transition-all"
                 >
-                  "{prompt}"
+                  &ldquo;{prompt}&rdquo;
                 </a>
               ))}
             </div>
@@ -85,8 +81,8 @@ export const ContactCta: React.FC = () => {
               className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-4.5 rounded-full bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-bold text-lg shadow-xl shadow-emerald-950/50 hover:shadow-emerald-900/60 hover:-translate-y-0.5 transition-all duration-200 mb-10 group"
             >
               <MessageCircle className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
-              <span>Chat on WhatsApp</span>
-              <ArrowRight className="w-5 h-5 text-emerald-200 group-hover:translate-x-1 transition-transform" />
+              <span>{t.contact.chatNow}</span>
+              <ArrowRight className={`w-5 h-5 text-emerald-200 transform ${isRtl ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'} transition-transform`} />
             </a>
 
             {/* Contact Details Card */}
@@ -96,7 +92,7 @@ export const ContactCta: React.FC = () => {
                   <User className="w-5 h-5" />
                 </div>
                 <div className="text-left">
-                  <div className="text-xs text-stone-300">Independent Travel Companion</div>
+                  <div className="text-xs text-stone-300">{t.founder.role}</div>
                   <div className="text-sm sm:text-base font-bold text-white">{FOUNDER_NAME}</div>
                 </div>
               </div>
@@ -109,7 +105,7 @@ export const ContactCta: React.FC = () => {
                   className="flex items-center gap-2 text-sm sm:text-base font-mono font-semibold text-emerald-300 hover:text-white transition-colors"
                 >
                   <Phone className="w-4 h-4 text-emerald-400" />
-                  <span>{WHATSAPP_PHONE_FORMATTED}</span>
+                  <span className="dir-ltr">{WHATSAPP_PHONE_FORMATTED}</span>
                 </a>
 
                 <button
@@ -117,7 +113,7 @@ export const ContactCta: React.FC = () => {
                   onClick={copyPhoneNumber}
                   title="Copy Phone Number"
                   id="copy-phone-number-btn"
-                  className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-stone-300 hover:text-white transition-colors"
+                  className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-stone-300 hover:text-white transition-colors cursor-pointer"
                   aria-label="Copy phone number"
                 >
                   {copied ? (
@@ -131,13 +127,13 @@ export const ContactCta: React.FC = () => {
 
             {copied && (
               <span className="text-xs text-emerald-400 mt-2 animate-fade-in font-medium">
-                Phone number copied to clipboard!
+                {t.contact.copied}
               </span>
             )}
 
             <div className="mt-6 flex items-center gap-2 text-xs text-stone-300">
               <ShieldCheck className="w-4 h-4 text-amber-400" />
-              <span>Fast response time &bull; Available 7 days a week</span>
+              <span>{t.contact.disclaimer}</span>
             </div>
           </div>
         </div>
@@ -145,3 +141,4 @@ export const ContactCta: React.FC = () => {
     </section>
   );
 };
+

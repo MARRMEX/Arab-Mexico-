@@ -3,8 +3,13 @@ import { FOUNDER_INFO } from '../data/content';
 import { User, MessageCircle, Globe, ShieldCheck, CheckCircle2, Award, Sparkles } from 'lucide-react';
 import { getWhatsAppUrl } from '../utils/whatsapp';
 import { Logo } from './Logo';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export const Founder: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <section id="about" className="py-20 sm:py-28 bg-white border-t border-stone-200/70">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,7 +32,7 @@ export const Founder: React.FC = () => {
 
                 <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 text-xs font-semibold uppercase tracking-wider mb-3">
                   <Sparkles className="w-3 h-3 text-amber-400" />
-                  <span>Official Emblem</span>
+                  <span>{t.founder.badge}</span>
                 </div>
 
                 <h3 className="text-2xl font-serif-title font-bold mb-1">
@@ -35,22 +40,22 @@ export const Founder: React.FC = () => {
                   <span className="text-emerald-400">Guide</span>
                 </h3>
                 <p className="text-xs text-emerald-300 font-medium mb-6">
-                  Travel &bull; Culture &bull; Guidance
+                  {t.founder.tagline}
                 </p>
 
                 {/* Trust Badges List */}
                 <div className="w-full space-y-2.5 text-left pt-6 border-t border-white/15">
                   <div className="flex items-center gap-3 py-2 px-3 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm text-stone-200">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span>Founder: <strong className="text-white font-medium">{FOUNDER_INFO.name}</strong></span>
+                    <span>{t.founder.credential1}</span>
                   </div>
                   <div className="flex items-center gap-3 py-2 px-3 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm text-stone-200">
                     <Globe className="w-4 h-4 text-amber-400 shrink-0" />
-                    <span>Native Arabic &amp; Spanish Concierge</span>
+                    <span>{t.founder.credential2}</span>
                   </div>
                   <div className="flex items-center gap-3 py-2 px-3 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm text-stone-200">
                     <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span>Direct On-The-Ground Assistance</span>
+                    <span>{t.founder.credential3}</span>
                   </div>
                 </div>
               </div>
@@ -65,7 +70,7 @@ export const Founder: React.FC = () => {
             {/* Section Eyebrow */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-900 border border-amber-400/40 text-xs font-semibold uppercase tracking-wider w-fit mb-5">
               <User className="w-3.5 h-3.5 text-amber-600" />
-              <span className="text-emerald-900 font-bold">The Founder</span>
+              <span className="text-emerald-900 font-bold">{t.founder.role}</span>
             </div>
 
             {/* Title */}
@@ -73,29 +78,26 @@ export const Founder: React.FC = () => {
               id="founder-heading"
               className="text-3xl sm:text-4xl md:text-5xl font-serif-title font-bold tracking-tight mb-2"
             >
-              <span className="text-emerald-950">Meet the </span>
-              <span className="text-amber-600">Founder</span>
+              <span className="text-emerald-950">Houssame </span>
+              <span className="text-amber-600">Chajari</span>
             </h2>
             <p className="text-xl font-bold text-emerald-800 mb-6 font-serif-title">
-              {FOUNDER_INFO.name}
+              {t.founder.role}
             </p>
 
             {/* Narrative Paragraphs */}
             <div className="space-y-4 text-base sm:text-lg text-stone-700 leading-relaxed mb-10 font-normal">
               <p className="p-5 rounded-2xl bg-emerald-50/70 border-l-4 border-emerald-700 text-stone-800 font-medium italic">
-                "{FOUNDER_INFO.quote}"
+                &ldquo;{t.founder.quote}&rdquo;
               </p>
               <p className="text-stone-700">
-                {FOUNDER_INFO.bioSecondParagraph}
-              </p>
-              <p className="text-stone-700">
-                My goal is to make it easier for visitors to navigate Mexico, discover local places and enjoy their trip with reliable human support.
+                {t.founder.bioSecondParagraph}
               </p>
             </div>
 
             {/* Three Statistics Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
-              {FOUNDER_INFO.stats.map((stat, idx) => (
+              {t.founder.stats.map((stat, idx) => (
                 <div
                   key={idx}
                   id={`founder-stat-${idx}`}
@@ -124,12 +126,12 @@ export const Founder: React.FC = () => {
                 className="inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-full bg-emerald-700 hover:bg-emerald-800 active:bg-emerald-900 text-white font-semibold text-sm transition-all shadow-md hover:shadow-lg"
               >
                 <MessageCircle className="w-4 h-4 text-emerald-200" />
-                <span>Chat on WhatsApp</span>
+                <span>{t.founder.cta}</span>
               </a>
 
               <div className="flex items-center justify-center gap-2 text-xs text-stone-600 font-medium px-2">
                 <Globe className="w-4 h-4 text-emerald-700" />
-                <span>Fluent in Arabic &amp; Spanish</span>
+                <span>{t.founder.credential2}</span>
               </div>
             </div>
           </div>
@@ -138,3 +140,4 @@ export const Founder: React.FC = () => {
     </section>
   );
 };
+

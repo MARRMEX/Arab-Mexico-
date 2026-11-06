@@ -2,15 +2,12 @@ import React from 'react';
 import { MessageCircle, ArrowDown, Sparkles, MapPin, Globe } from 'lucide-react';
 import { getWhatsAppUrl } from '../utils/whatsapp';
 import { Logo } from './Logo';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export const Hero: React.FC = () => {
-  const scrollToDiscover = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const el = document.getElementById('discover');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const { language } = useLanguage();
+  const t = translations[language];
 
   return (
     <section
@@ -46,7 +43,7 @@ export const Hero: React.FC = () => {
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/80 backdrop-blur-md border border-amber-400/40 text-amber-300 text-xs sm:text-sm font-semibold mb-6 shadow-sm tracking-wide animate-fade-in"
         >
           <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-          <span>Independent Travel Assistance in Mexico</span>
+          <span>{t.hero.badge}</span>
         </div>
 
         {/* Main H1 Title */}
@@ -54,8 +51,8 @@ export const Hero: React.FC = () => {
           id="hero-main-title"
           className="text-4xl sm:text-6xl md:text-7xl font-serif-title font-bold tracking-tight mb-4 leading-tight sm:leading-tight drop-shadow-sm"
         >
-          <span className="text-amber-300">Arab Mexico </span>
-          <span className="text-emerald-400">Guide</span>
+          <span className="text-amber-300">{t.hero.titleStart}</span>
+          <span className="text-emerald-400">{t.hero.titleEnd}</span>
         </h1>
 
         {/* Subtitle */}
@@ -63,7 +60,7 @@ export const Hero: React.FC = () => {
           id="hero-subtitle"
           className="text-xl sm:text-2xl md:text-3xl font-semibold text-emerald-300 mb-6 tracking-tight max-w-2xl"
         >
-          Your Arabic Travel Companion in Mexico
+          {t.hero.subtitle}
         </p>
 
         {/* Main Description - Black text in clean readable container */}
@@ -72,39 +69,51 @@ export const Hero: React.FC = () => {
           className="bg-white/95 backdrop-blur-md px-6 py-5 rounded-2xl max-w-2xl mx-auto mb-10 shadow-lg border border-white/60 text-center space-y-3"
         >
           <p className="text-base sm:text-lg md:text-xl text-black leading-relaxed font-bold">
-            Independent travel assistance and local guidance for Arabic-speaking visitors exploring Mexico.
+            {t.hero.desc1}
           </p>
           <div className="w-16 h-px bg-stone-300 mx-auto" />
           <p
             id="hero-additional-text"
             className="text-sm sm:text-base text-black max-w-2xl mx-auto leading-relaxed font-semibold"
           >
-            Personalized support, local recommendations, Arabic-Spanish assistance and practical guidance before and during your trip.
+            {t.hero.desc2}
           </p>
         </div>
 
         {/* Hero CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-14">
           <a
-            href={getWhatsAppUrl('Hello, I am looking for independent travel assistance for my trip to Mexico.')}
+            href={getWhatsAppUrl(
+              language === 'ar'
+                ? 'مرحباً، أبحث عن مساعدة سياحية مستقلة لرحلتي إلى المكسيك.'
+                : language === 'es'
+                ? 'Hola, busco asistencia de viaje independiente para mi viaje a México.'
+                : 'Hello, I am looking for independent travel assistance for my trip to Mexico.'
+            )}
             target="_blank"
             rel="noopener noreferrer"
             id="hero-cta-assistance"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-semibold text-base shadow-lg shadow-emerald-950/40 hover:shadow-emerald-900/50 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 ring-1 ring-white/20"
           >
             <MessageCircle className="w-5 h-5 text-white" />
-            <span>Get Travel Assistance</span>
+            <span>{t.hero.ctaAssistance}</span>
           </a>
 
           <a
-            href={getWhatsAppUrl('Hello, I would like to chat about travel advice in Mexico.')}
+            href={getWhatsAppUrl(
+              language === 'ar'
+                ? 'مرحباً، أود الاستفسار والتحدث عن نصائح السفر في المكسيك.'
+                : language === 'es'
+                ? 'Hola, me gustaría conversar sobre recomendaciones de viaje en México.'
+                : 'Hello, I would like to chat about travel advice in Mexico.'
+            )}
             target="_blank"
             rel="noopener noreferrer"
             id="hero-cta-whatsapp"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-white/15 hover:bg-white/25 active:bg-white/30 backdrop-blur-md text-white font-medium text-base border border-white/25 hover:border-white/40 transition-all duration-200"
           >
             <MessageCircle className="w-5 h-5 text-amber-300" />
-            <span>Chat on WhatsApp</span>
+            <span>{t.hero.ctaChat}</span>
           </a>
         </div>
 
@@ -115,17 +124,17 @@ export const Hero: React.FC = () => {
         >
           <div className="flex items-center justify-center gap-2.5 bg-black py-3 px-4 rounded-xl border border-stone-800 shadow-md">
             <Globe className="w-4 h-4 text-amber-400 shrink-0" />
-            <span className="font-semibold text-white">100% Arabic Support</span>
+            <span className="font-semibold text-white">{t.hero.trust1}</span>
           </div>
 
           <div className="flex items-center justify-center gap-2.5 bg-black py-3 px-4 rounded-xl border border-stone-800 shadow-md">
             <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
-            <span className="font-semibold text-white">Independent Assistance</span>
+            <span className="font-semibold text-white">{t.hero.trust2}</span>
           </div>
 
           <div className="flex items-center justify-center gap-2.5 bg-black py-3 px-4 rounded-xl border border-stone-800 shadow-md">
             <MapPin className="w-4 h-4 text-amber-400 shrink-0" />
-            <span className="font-semibold text-white">Based in Mexico</span>
+            <span className="font-semibold text-white">{t.hero.trust3}</span>
           </div>
         </div>
       </div>

@@ -1,8 +1,13 @@
 import React from 'react';
 import { Sparkles, ShieldCheck, HeartHandshake, Compass, MessageCircle } from 'lucide-react';
 import { getWhatsAppUrl } from '../utils/whatsapp';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export const AboutService: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <section
       id="about-service"
@@ -13,7 +18,7 @@ export const AboutService: React.FC = () => {
           {/* Visual Clarification Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-900 border border-amber-400/50 text-xs sm:text-sm font-bold uppercase tracking-wider mb-6 shadow-xs">
             <Sparkles className="w-4 h-4 text-amber-600" />
-            <span>Independent Travel Assistance</span>
+            <span>{t.aboutService.badge}</span>
           </div>
 
           {/* Section Title */}
@@ -21,17 +26,17 @@ export const AboutService: React.FC = () => {
             id="about-service-heading"
             className="text-3xl sm:text-4xl md:text-5xl font-serif-title font-bold tracking-tight mb-6"
           >
-            <span className="text-emerald-950">More Than a Guide </span>
-            <span className="text-amber-600">Your Local Travel Support</span>
+            <span className="text-emerald-950">{t.aboutService.titleStart}</span>
+            <span className="text-amber-600">{t.aboutService.titleEnd}</span>
           </h2>
 
           {/* Core Descriptive Text */}
           <div className="space-y-4 text-base sm:text-lg md:text-xl text-stone-700 leading-relaxed font-normal mb-10 max-w-3xl mx-auto">
             <p className="font-medium text-emerald-950">
-              Arab Mexico Guide provides independent, personalized assistance to Arabic-speaking travelers visiting Mexico.
+              {t.aboutService.p1}
             </p>
             <p className="text-stone-600">
-              From understanding local customs and finding suitable places to eat, to navigating transportation and communicating in Spanish, we help make your experience in Mexico easier and more comfortable.
+              {t.aboutService.p2}
             </p>
           </div>
 
@@ -42,10 +47,10 @@ export const AboutService: React.FC = () => {
                 <Compass className="w-5 h-5" />
               </div>
               <h3 className="font-bold text-emerald-950 text-base mb-1.5">
-                Authentic Guidance
+                {t.aboutService.pillar1Title}
               </h3>
               <p className="text-stone-600 text-sm leading-relaxed">
-                Objective recommendations based on real local knowledge, with no commercial bias.
+                {t.aboutService.pillar1Desc}
               </p>
             </div>
 
@@ -54,10 +59,10 @@ export const AboutService: React.FC = () => {
                 <HeartHandshake className="w-5 h-5" />
               </div>
               <h3 className="font-bold text-emerald-950 text-base mb-1.5">
-                Personalized Care
+                {t.aboutService.pillar2Title}
               </h3>
               <p className="text-stone-600 text-sm leading-relaxed">
-                Attention centered purely on your schedule, interests, comfort and family preferences.
+                {t.aboutService.pillar2Desc}
               </p>
             </div>
 
@@ -66,10 +71,10 @@ export const AboutService: React.FC = () => {
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <h3 className="font-bold text-emerald-950 text-base mb-1.5">
-                Zero Language Barriers
+                {t.aboutService.pillar3Title}
               </h3>
               <p className="text-stone-600 text-sm leading-relaxed">
-                Fluent Arabic and Spanish support so you can explore Mexico with complete peace of mind.
+                {t.aboutService.pillar3Desc}
               </p>
             </div>
           </div>
@@ -77,13 +82,19 @@ export const AboutService: React.FC = () => {
           {/* CTA Link */}
           <div className="inline-flex flex-col sm:flex-row items-center gap-4">
             <a
-              href={getWhatsAppUrl('Hello, I would like to learn more about your independent travel assistance in Mexico.')}
+              href={getWhatsAppUrl(
+                language === 'ar'
+                  ? 'مرحباً، أود معرفة المزيد عن المساعدة السياحية المستقلة في المكسيك.'
+                  : language === 'es'
+                  ? 'Hola, me gustaría saber más sobre la asistencia de viaje independiente en México.'
+                  : 'Hello, I would like to learn more about your independent travel assistance in Mexico.'
+              )}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm shadow-md transition-all"
             >
               <MessageCircle className="w-4 h-4 text-emerald-200" />
-              <span>Ask for Travel Assistance</span>
+              <span>{t.hero.ctaAssistance}</span>
             </a>
           </div>
         </div>

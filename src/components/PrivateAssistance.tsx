@@ -1,16 +1,12 @@
 import React from 'react';
 import { CheckCircle2, MessageCircle, Sparkles, MapPin, ShieldCheck, ArrowRight } from 'lucide-react';
 import { getWhatsAppUrl, WHATSAPP_MESSAGES } from '../utils/whatsapp';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export const PrivateAssistance: React.FC = () => {
-  const privateFeatures = [
-    'Local orientation',
-    'Arabic-Spanish communication assistance',
-    'Help navigating the city',
-    'Local recommendations',
-    'Cultural guidance',
-    'Practical travel support',
-  ];
+  const { language, isRtl } = useLanguage();
+  const t = translations[language];
 
   return (
     <section
@@ -28,7 +24,7 @@ export const PrivateAssistance: React.FC = () => {
             {/* Exclusive Service Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/80 border border-amber-400/40 text-amber-300 text-xs font-semibold uppercase tracking-wider w-fit mb-6 shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>Independent In-Person Support</span>
+              <span>{t.privateAssistance.badge}</span>
             </div>
 
             {/* Title */}
@@ -36,24 +32,24 @@ export const PrivateAssistance: React.FC = () => {
               id="private-assistance-heading"
               className="text-3xl sm:text-4xl md:text-5xl font-serif-title font-bold tracking-tight mb-3"
             >
-              <span className="text-emerald-400">Private In-Person </span>
-              <span className="text-amber-300">Assistance</span>
+              <span className="text-emerald-400">{t.privateAssistance.titleStart}</span>
+              <span className="text-amber-300">{t.privateAssistance.titleEnd}</span>
             </h2>
 
             {/* Location Subtitle */}
             <div className="flex items-center gap-2 text-amber-300 text-lg sm:text-xl font-medium mb-6">
               <MapPin className="w-5 h-5 text-amber-400 shrink-0" />
-              <span>Personalized local support in Oaxaca and Puebla</span>
+              <span>{t.privateAssistance.subtitle}</span>
             </div>
 
             {/* Description */}
             <p className="text-stone-300 text-base sm:text-lg leading-relaxed mb-8 max-w-xl font-light">
-              For travelers who prefer personal assistance, we offer independent in-person support and local accompaniment in selected locations.
+              {t.privateAssistance.desc}
             </p>
 
             {/* Checklist */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 mb-10 max-w-lg">
-              {privateFeatures.map((item, index) => (
+              {t.privateAssistance.features.map((item, index) => (
                 <div
                   key={index}
                   className="flex items-center gap-3 py-2 px-3.5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-xs text-stone-200 text-sm sm:text-base font-medium"
@@ -74,13 +70,13 @@ export const PrivateAssistance: React.FC = () => {
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-semibold text-base shadow-lg shadow-emerald-950/40 hover:shadow-emerald-900/50 hover:-translate-y-0.5 transition-all duration-200"
               >
                 <MessageCircle className="w-5 h-5" />
-                <span>Request Private Assistance</span>
-                <ArrowRight className="w-4 h-4 text-emerald-200" />
+                <span>{t.privateAssistance.cardCta}</span>
+                <ArrowRight className={`w-4 h-4 text-emerald-200 transform ${isRtl ? 'rotate-180' : ''}`} />
               </a>
 
               <span className="text-xs text-stone-400 px-2 flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-amber-400" />
-                Direct inquiry via WhatsApp
+                {t.founder.credential2}
               </span>
             </div>
           </div>
@@ -105,11 +101,11 @@ export const PrivateAssistance: React.FC = () => {
                       Monte Albán &bull; Oaxaca &bull; Puebla
                     </span>
                     <span className="text-emerald-300 text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-900/60 border border-emerald-500/30">
-                      In-Person Support
+                      {t.privateAssistance.badge}
                     </span>
                   </div>
                   <p className="text-white text-sm sm:text-base font-medium leading-snug">
-                    Explore ancient pyramids of Monte Albán, authentic local markets, and historic culture with personalized Arabic assistance.
+                    {t.privateAssistance.desc}
                   </p>
                 </div>
               </div>

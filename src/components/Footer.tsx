@@ -1,13 +1,27 @@
 import React from 'react';
-import { NAV_ITEMS } from '../data/content';
 import { MessageCircle, Phone, ArrowUp, Linkedin } from 'lucide-react';
 import { getWhatsAppUrl, WHATSAPP_PHONE_FORMATTED } from '../utils/whatsapp';
 import { Logo } from './Logo';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 export const Footer: React.FC = () => {
+  const { language, isRtl } = useLanguage();
+  const t = translations[language];
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const navItems = [
+    { name: t.nav.home, href: '#home' },
+    { name: t.nav.about, href: '#about-service' },
+    { name: t.nav.miniGuide, href: '#mini-travel-guide' },
+    { name: t.nav.howWeHelp, href: '#how-we-help' },
+    { name: t.nav.privateAssistance, href: '#private-assistance' },
+    { name: t.nav.howItWorks, href: '#how-it-works' },
+    { name: t.nav.contact, href: '#contact' },
+  ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -38,16 +52,16 @@ export const Footer: React.FC = () => {
                   <span className="text-emerald-400">Guide</span>
                 </h3>
                 <p className="text-xs text-emerald-300 font-semibold">
-                  Your Arabic Travel Companion in Mexico
+                  {t.footer.tagline}
                 </p>
                 <p className="text-[11px] text-amber-400/90 font-medium">
-                  Independent Travel Assistance &amp; Local Guidance
+                  {t.footer.subTagline}
                 </p>
               </div>
             </div>
 
             <p className="text-sm text-stone-400 max-w-md leading-relaxed mb-6 font-normal">
-              Independent travel assistance, local recommendations, and Arabic-Spanish communication support designed specifically for Arabic-speaking travelers exploring Mexico.
+              {t.footer.desc}
             </p>
 
             {/* Direct WhatsApp Badge & LinkedIn */}
@@ -62,7 +76,7 @@ export const Footer: React.FC = () => {
                   aria-label="WhatsApp Contact"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  <span>{WHATSAPP_PHONE_FORMATTED}</span>
+                  <span className="dir-ltr">{WHATSAPP_PHONE_FORMATTED}</span>
                 </a>
               </div>
               <a
@@ -82,10 +96,10 @@ export const Footer: React.FC = () => {
           {/* Navigation Links */}
           <div className="lg:col-span-4">
             <h4 className="text-xs font-bold uppercase tracking-widest text-amber-400 mb-5">
-              Quick Navigation
+              {t.footer.quickNav}
             </h4>
             <ul className="grid grid-cols-2 gap-3 text-sm">
-              {NAV_ITEMS.map((item) => (
+              {navItems.map((item) => (
                 <li key={item.name}>
                   <a
                     href={item.href}
@@ -126,7 +140,7 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-2 flex flex-col justify-between items-start md:items-end">
             <div>
               <h4 className="text-xs font-bold uppercase tracking-widest text-amber-400 mb-5">
-                Back to Top
+                {t.footer.backToTop}
               </h4>
             </div>
 
@@ -135,10 +149,10 @@ export const Footer: React.FC = () => {
                 type="button"
                 onClick={scrollToTop}
                 id="footer-back-to-top"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-300 hover:text-white border border-stone-800 text-xs font-medium transition-all"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-300 hover:text-white border border-stone-800 text-xs font-medium transition-all cursor-pointer"
                 aria-label="Back to top"
               >
-                <span>Top</span>
+                <span>{t.footer.backToTop}</span>
                 <ArrowUp className="w-3.5 h-3.5" />
               </button>
             </div>
@@ -148,14 +162,15 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar with Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-400">
           <p id="footer-copyright" className="text-center sm:text-left">
-            Arab Mexico Guide &copy; 2026 &bull; Crafted with care for Arabic-speaking travelers.
+            Arab Mexico Guide &copy; 2026 &bull; {t.footer.rights}
           </p>
 
-          <div className="flex items-center gap-1.5 text-stone-400">
-            <span>Connecting cultures between the Arab World and Mexico</span>
+          <div className="flex items-center gap-1.5 text-stone-400 text-center sm:text-right">
+            <span>{t.footer.independentDisclaimer}</span>
           </div>
         </div>
       </div>
     </footer>
   );
 };
+

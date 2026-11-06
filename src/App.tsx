@@ -1,4 +1,5 @@
 import React from 'react';
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { AboutService } from './components/AboutService';
@@ -15,10 +16,17 @@ import { ContactCta } from './components/ContactCta';
 import { Footer } from './components/Footer';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 
-export default function App() {
+const AppContent: React.FC = () => {
+  const { dir, isRtl } = useLanguage();
+
   return (
-    <div className="min-h-screen bg-stone-50 text-stone-900 flex flex-col selection:bg-amber-800 selection:text-white overflow-x-hidden font-sans">
-      {/* Sticky Header with Navigation */}
+    <div
+      dir={dir}
+      className={`min-h-screen bg-stone-50 text-stone-900 flex flex-col selection:bg-amber-800 selection:text-white overflow-x-hidden ${
+        isRtl ? 'font-arabic' : 'font-sans'
+      }`}
+    >
+      {/* Sticky Header with Navigation and Language Toggle */}
       <Navbar />
 
       {/* Main Content Sections */}
@@ -44,4 +52,13 @@ export default function App() {
       <FloatingWhatsApp />
     </div>
   );
+};
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
+  );
 }
+
