@@ -90,7 +90,7 @@ export const MiniTravelGuide: React.FC = () => {
                     <Download className="w-3 h-3" /> PDF Guide
                   </span>
                   <span className="font-bold text-amber-300 bg-amber-400/20 px-2 py-0.5 rounded-full border border-amber-400/40">
-                    $5 USD
+                    $19 USD
                   </span>
                 </div>
 
@@ -136,9 +136,9 @@ export const MiniTravelGuide: React.FC = () => {
 
               {/* Price Banner */}
               <div className="pt-3 flex items-baseline gap-3">
-                <span className="text-stone-400 text-sm">Special price:</span>
+                <span className="text-stone-400 text-sm">Price:</span>
                 <span className="text-3xl sm:text-4xl font-extrabold text-amber-400 font-serif-title">
-                  $5 USD
+                  $19 USD
                 </span>
                 <span className="text-xs text-stone-400 bg-stone-800/80 px-2.5 py-1 rounded-full border border-stone-700">
                   One-time payment
@@ -164,7 +164,7 @@ export const MiniTravelGuide: React.FC = () => {
                   English Edition
                 </span>
                 <span className="text-sm font-bold text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/30">
-                  Only $5 USD
+                  $19 USD
                 </span>
               </div>
 
@@ -196,13 +196,13 @@ export const MiniTravelGuide: React.FC = () => {
               </div>
             </div>
 
-            {/* Price & Buy Now Button */}
+            {/* Price & Buy Now CTA */}
             <div className="pt-4 border-t border-stone-800">
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <span className="text-xs text-stone-400 uppercase tracking-wider block">Price</span>
                   <span className="text-3xl font-serif-title font-extrabold text-amber-400">
-                    Only $5 USD
+                    $19 USD
                   </span>
                 </div>
                 <div className="text-right">
@@ -213,18 +213,23 @@ export const MiniTravelGuide: React.FC = () => {
                 </div>
               </div>
 
-              {/* BUY NOW Button with PayPal Link */}
+              {/* BUY NOW Button with PayPal Link and exact CTA requested */}
               <a
                 href={PAYPAL_PAYMENT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 id="buy-now-english-btn"
-                className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-500 active:scale-[0.99] text-white font-bold text-base sm:text-lg shadow-lg shadow-emerald-950/60 hover:shadow-emerald-900/80 transition-all duration-200 border border-emerald-400/40 cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-2xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-500 active:scale-[0.99] text-white font-bold text-base sm:text-lg shadow-lg shadow-emerald-950/60 hover:shadow-emerald-900/80 transition-all duration-200 border border-emerald-400/40 cursor-pointer text-center"
               >
-                <Lock className="w-4 h-4 text-amber-300" />
-                <span>BUY NOW</span>
-                <ExternalLink className="w-4 h-4 text-emerald-200" />
+                <Lock className="w-4 h-4 text-amber-300 shrink-0" />
+                <span>Buy your Mexico Mini Travel Guide for $19 USD</span>
+                <ExternalLink className="w-4 h-4 text-emerald-200 shrink-0" />
               </a>
+
+              {/* Value Proposition Message */}
+              <p className="mt-3 text-xs sm:text-sm text-center text-amber-200/90 font-medium leading-relaxed italic">
+                &ldquo;Investing in this guide is your best insurance for a worry-free travel experience.&rdquo;
+              </p>
 
               {/* Trust Badges */}
               <div className="flex items-center justify-center gap-4 mt-3.5 text-[11px] text-stone-400">
@@ -254,7 +259,7 @@ export const MiniTravelGuide: React.FC = () => {
                   النسخة العربية
                 </span>
                 <span className="text-sm font-bold text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/30">
-                  السعر فقط 5 دولارات أمريكية
+                  ١٩ دولارًا أمريكيًا
                 </span>
               </div>
 
@@ -286,13 +291,13 @@ export const MiniTravelGuide: React.FC = () => {
               </div>
             </div>
 
-            {/* Price & Buy Now Button */}
+            {/* Price & Buy Now CTA */}
             <div className="pt-4 border-t border-stone-800">
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <span className="text-xs text-stone-400 uppercase tracking-wider block">السعر</span>
                   <span className="text-2xl sm:text-3xl font-serif-title font-extrabold text-amber-400">
-                    السعر فقط 5 دولارات أمريكية
+                    ١٩ دولارًا أمريكيًا ($19 USD)
                   </span>
                 </div>
                 <div className="text-left">
@@ -303,18 +308,23 @@ export const MiniTravelGuide: React.FC = () => {
                 </div>
               </div>
 
-              {/* اشترِ الآن Button with PayPal Link */}
+              {/* اشترِ Button with PayPal Link and exact Arabic CTA */}
               <a
                 href={PAYPAL_PAYMENT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 id="buy-now-arabic-btn"
-                className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-500 active:scale-[0.99] text-stone-950 font-bold text-base sm:text-lg shadow-lg shadow-amber-950/60 hover:shadow-amber-900/80 transition-all duration-200 border border-amber-300/40 cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-2xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-500 active:scale-[0.99] text-stone-950 font-bold text-base sm:text-lg shadow-lg shadow-amber-950/60 hover:shadow-amber-900/80 transition-all duration-200 border border-amber-300/40 cursor-pointer text-center"
               >
-                <Lock className="w-4 h-4 text-stone-950" />
-                <span>اشترِ الآن</span>
-                <ExternalLink className="w-4 h-4 text-stone-950/70" />
+                <Lock className="w-4 h-4 text-stone-950 shrink-0" />
+                <span>اشترِ الدليل المصغر للسفر في المكسيك مقابل ١٩ دولارًا</span>
+                <ExternalLink className="w-4 h-4 text-stone-950/70 shrink-0" />
               </a>
+
+              {/* Value Proposition Message in Arabic */}
+              <p className="mt-3 text-xs sm:text-sm text-center text-amber-200/90 font-medium leading-relaxed italic">
+                &ldquo;الاستثمار في هذا الدليل هو أفضل تأمين لرحلة خالية من المتاعب.&rdquo;
+              </p>
 
               {/* Trust Badges */}
               <div className="flex items-center justify-center gap-4 mt-3.5 text-[11px] text-stone-400">
@@ -330,6 +340,7 @@ export const MiniTravelGuide: React.FC = () => {
               </div>
             </div>
           </div>
+
 
         </div>
 
