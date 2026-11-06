@@ -7,7 +7,7 @@ import { translations } from '../data/translations';
 
 export const Footer: React.FC = () => {
   const { language, isRtl } = useLanguage();
-  const t = translations[language];
+  const t = translations[language] || translations.en;
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

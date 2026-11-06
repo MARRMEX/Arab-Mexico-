@@ -6,7 +6,7 @@ import { translations } from '../data/translations';
 
 export const PrivateAssistance: React.FC = () => {
   const { language, isRtl } = useLanguage();
-  const t = translations[language];
+  const t = translations[language] || translations.en;
 
   return (
     <section

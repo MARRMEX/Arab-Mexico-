@@ -8,7 +8,7 @@ import { translations } from '../data/translations';
 
 export const Founder: React.FC = () => {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language] || translations.en;
 
   return (
     <section id="about" className="py-20 sm:py-28 bg-white border-t border-stone-200/70">

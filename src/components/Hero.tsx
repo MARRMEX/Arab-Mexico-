@@ -7,7 +7,7 @@ import { translations } from '../data/translations';
 
 export const Hero: React.FC = () => {
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language] || translations.en;
 
   return (
     <section

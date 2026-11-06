@@ -16,7 +16,7 @@ const PAYPAL_PAYMENT_URL = 'https://www.paypal.com/ncp/payment/N6FNK223TFT36';
 
 export const MiniTravelGuide: React.FC = () => {
   const { language, isRtl } = useLanguage();
-  const t = translations[language];
+  const t = translations[language] || translations.en;
 
   return (
     <section

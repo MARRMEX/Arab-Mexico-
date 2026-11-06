@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { translations, TranslationSchema } from '../data/translations';
 
 export type Language = 'en' | 'ar' | 'es';
 
@@ -7,6 +8,7 @@ interface LanguageContextType {
   setLanguage: (lang: Language) => void;
   dir: 'ltr' | 'rtl';
   isRtl: boolean;
+  t: TranslationSchema;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -15,44 +17,71 @@ const STORAGE_KEY = 'arab_mexico_guide_lang';
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem(STORAGE_KEY) as Language;
-      if (saved === 'en' || saved === 'ar' || saved === 'es') {
-        return saved;
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        const saved = window.localStorage.getItem(STORAGE_KEY) as Language;
+        if (saved === 'en' || saved === 'ar' || saved === 'es') {
+          return saved;
+        }
       }
-      // Check browser language
-      const browserLang = navigator.language.toLowerCase();
-      if (browserLang.startsWith('ar')) return 'ar';
-      if (browserLang.startsWith('es')) return 'es';
+    } catch {
+      // Storage access might be restricted in cross-origin iframes
     }
+
+    try {
+      if (typeof navigator !== 'undefined') {
+        const rawLang =
+          navigator.language ||
+          (navigator as unknown as { userLanguage?: string }).userLanguage ||
+          (Array.isArray(navigator.languages) ? navigator.languages[0] : '') ||
+          '';
+        const browserLang = typeof rawLang === 'string' ? rawLang.toLowerCase() : '';
+        if (browserLang.startsWith('ar')) return 'ar';
+        if (browserLang.startsWith('es')) return 'es';
+      }
+    } catch {
+      // Navigator language inspection failed
+    }
+
     return 'en';
   });
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(STORAGE_KEY, lang);
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        window.localStorage.setItem(STORAGE_KEY, lang);
+      }
+    } catch {
+      // Ignore storage restrictions
     }
   };
 
   const isRtl = language === 'ar';
   const dir: 'ltr' | 'rtl' = isRtl ? 'rtl' : 'ltr';
+  const t: TranslationSchema = translations[language] || translations.en;
 
   useEffect(() => {
-    // Update HTML root attributes for accessibility and styling
-    document.documentElement.lang = language;
-    document.documentElement.dir = dir;
+    try {
+      if (typeof document !== 'undefined') {
+        document.documentElement.lang = language;
+        document.documentElement.dir = dir;
 
-    // Update body classes for Arabic font support
-    if (language === 'ar') {
-      document.body.classList.add('font-arabic');
-    } else {
-      document.body.classList.remove('font-arabic');
+        if (document.body) {
+          if (language === 'ar') {
+            document.body.classList.add('font-arabic');
+          } else {
+            document.body.classList.remove('font-arabic');
+          }
+        }
+      }
+    } catch {
+      // Ignore DOM manipulation errors
     }
   }, [language, dir]);
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, dir, isRtl }}>
+    <LanguageContext.Provider value={{ language, setLanguage, dir, isRtl, t }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -65,3 +94,4 @@ export const useLanguage = (): LanguageContextType => {
   }
   return context;
 };
+

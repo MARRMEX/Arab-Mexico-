@@ -7,7 +7,7 @@ import { translations } from '../data/translations';
 export const FloatingWhatsApp: React.FC = () => {
   const [showTooltip, setShowTooltip] = useState(false);
   const { language } = useLanguage();
-  const t = translations[language];
+  const t = translations[language] || translations.en;
 
   useEffect(() => {
     // Show quick greeting tooltip after 3 seconds

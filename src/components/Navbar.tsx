@@ -11,7 +11,7 @@ export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const { language, isRtl } = useLanguage();
-  const t = translations[language];
+  const t = translations[language] || translations.en;
 
   const navItems = [
     { name: t.nav.home, href: '#home', id: 'home' },

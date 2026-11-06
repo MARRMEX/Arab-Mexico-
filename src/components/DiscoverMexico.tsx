@@ -7,7 +7,7 @@ import { translations } from '../data/translations';
 
 export const DiscoverMexico: React.FC = () => {
   const { language, isRtl } = useLanguage();
-  const t = translations[language];
+  const t = translations[language] || translations.en;
 
   return (
     <section id="discover" className="py-20 sm:py-28 bg-stone-50">

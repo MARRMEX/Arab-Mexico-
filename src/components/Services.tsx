@@ -26,7 +26,7 @@ const iconMap: Record<string, React.ElementType> = {
 
 export const Services: React.FC = () => {
   const { language, isRtl } = useLanguage();
-  const t = translations[language];
+  const t = translations[language] || translations.en;
 
   const serviceIcons = ['Compass', 'Calendar', 'Plane', 'Languages', 'UtensilsCrossed', 'MessageCircle'];
 

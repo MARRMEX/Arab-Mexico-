@@ -20,12 +20,18 @@ import { translations } from '../data/translations';
 export const ContactCta: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const { language, isRtl } = useLanguage();
-  const t = translations[language];
+  const t = translations[language] || translations.en;
 
   const copyPhoneNumber = () => {
-    navigator.clipboard.writeText(WHATSAPP_PHONE_FORMATTED);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    try {
+      if (typeof navigator !== 'undefined' && navigator.clipboard) {
+        navigator.clipboard.writeText(WHATSAPP_PHONE_FORMATTED);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2500);
+      }
+    } catch {
+      // Ignore clipboard write restrictions in iframe
+    }
   };
 
   return (
